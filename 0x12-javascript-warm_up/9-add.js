@@ -1,7 +1,8 @@
 #!/usr/bin/node
 function add (a, b) {
-  const c = a + b;
-  console.log(c);
+  console.log(a + b);
 }
-
-add(Number(process.argv[2]), Number(process.argv[3]));
+const args = process.argv;
+const lwl = Math.floor(Number(args[2]));
+const tani = Math.floor(Number(args[3]));
+add(lwl, tani);
