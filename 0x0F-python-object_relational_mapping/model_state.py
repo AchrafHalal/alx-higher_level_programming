@@ -1,18 +1,25 @@
 #!/usr/bin/python3
 """
-Contains State class and Base, an instance of declarative_base()
+Defines the state model, containing the State class and
 """
-from sqlalchemy import Column, Integer, String, MetaData
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine, Integer, Column, String
+from sqlalchemy.orm import declarative_base
 
-mymetadata = MetaData()
-Base = declarative_base(metadata=mymetadata)
+engine = create_engine('mysql+mysqldb://root:root@localhost/hbtn_0e_6_usa')
+Base = declarative_base()
 
 
 class State(Base):
     """
-    Class with id and name attributes of each state
+    State class
+        id -> state.id
+        name -> state.name
     """
     __tablename__ = 'states'
-    id = Column(Integer, unique=True, nullable=False, primary_key=True)
+    id = Column(Integer, primary_key=True,
+                nullable=False, unique=True,
+                autoincrement=True)
     name = Column(String(128), nullable=False)
+
+    def __repr__(self):
+        return "{}: {}".format(self.id, self.name)
